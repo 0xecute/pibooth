@@ -451,12 +451,18 @@ def main():
         filename = osp.join(tempfile.gettempdir(), 'pibooth.log')
     else:
         filename = None
-    configure_logging(options.logging, '[ %(levelname)-8s] %(name)-18s: %(message)s', filename=filename)
+
 
     plugin_manager = create_plugin_manager()
 
     # Load the configuration
     config = PiConfigParser(osp.join(options.config_directory, "pibooth.cfg"), plugin_manager, not options.reset)
+
+    if config.get('GENERAL', 'log_path'):
+        filename = config.get('GENERAL', 'log_path')
+
+    configure_logging(options.logging, '[ %(levelname)-8s] %(name)-18s: %(message)s', filename=filename)
+
 
     # Register plugins
     plugin_manager.load_all_plugins(config.gettuple('GENERAL', 'plugins', 'path'),
