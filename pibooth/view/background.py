@@ -273,7 +273,7 @@ class IntroWithPrintBackground(IntroBackground):
             size = (self._rect.width * 0.1, self._rect.height * 0.1)
             if self.arrow_location == ARROW_TOUCH:
                 self.right_arrow = pictures.get_pygame_image("hand.png", size, hflip=False,
-                                                             vflip=False, angle=-70, color=self._text_color)
+                                                             vflip=False, angle=0, color=self._text_color)
             else:
                 vflip = True if self.arrow_location == ARROW_TOP else False
                 angle = -70 if self.arrow_location == ARROW_TOP else 70
@@ -281,7 +281,7 @@ class IntroWithPrintBackground(IntroBackground):
                                                              vflip=vflip, angle=angle, color=self._text_color)
 
             x = int(self._rect.left + self._rect.width // 2
-                    - self.right_arrow.get_rect().width // 2)
+                    + self.right_arrow.get_rect().width // 2)
             if self.arrow_location == ARROW_TOP:
                 y = self._rect.top + 10
             else:
