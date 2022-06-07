@@ -280,8 +280,7 @@ class IntroWithPrintBackground(IntroBackground):
                 self.right_arrow = pictures.get_pygame_image("arrow.png", size, hflip=False,
                                                              vflip=vflip, angle=angle, color=self._text_color)
 
-            x = int(self._rect.left + self._rect.width // 2
-                    + self.right_arrow.get_rect().width)
+            x = int(self._rect.width * 0.60 + self._text_border)
             if self.arrow_location == ARROW_TOP:
                 y = self._rect.top + 10
             else:
