@@ -170,13 +170,13 @@ class ViewPlugin(object):
         if cfg.getfloat('WINDOW', 'finish_picture_delay') > 0 and not self.forgotten:
             win.show_finished(app.previous_picture)
             timeout = cfg.getfloat('WINDOW', 'finish_picture_delay')
-            # Reset timeout in case of settings changed
-            self.finish_timer.timeout = timeout
-            self.finish_timer.start()
         else:
-            return "wait"
+            win.show_finished()
+            timeout = 0
 
-
+        # Reset timeout in case of settings changed
+        self.finish_timer.timeout = timeout
+        self.finish_timer.start()
 
     @pibooth.hookimpl
     def state_finish_validate(self):
