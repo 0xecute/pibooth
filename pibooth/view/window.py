@@ -184,7 +184,7 @@ class PiWindow(object):
         """
         Return the position of the given image to be put on the right of the screen
         """
-        pos = (self.surface.get_rect().centerx + self.surface.get_rect().centerx // 2, self.surface.get_rect().centery/5)
+        pos = (self.surface.get_rect().centerx + self.surface.get_rect().centerx // 2, self.surface.get_rect().centery/2)
         return image.get_rect(center=pos) if image else pos
 
     def get_rect(self, absolute=False):
