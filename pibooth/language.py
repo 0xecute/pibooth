@@ -81,7 +81,7 @@ DEFAULT = {
     },
     'fr': {
         'intro': "Faire une photo",
-        'intro_print': "Ou sinon\ntu peux toujours\nimprimer\ncette photo",
+        'intro_print': "imprimer",
         'choose': "Choisis ton format",
         '1': "1 photo",
         '2': "2 photos",
