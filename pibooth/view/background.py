@@ -272,7 +272,7 @@ class IntroWithPrintBackground(IntroBackground):
         if self._need_update and self.arrow_location != ARROW_HIDDEN:
             size = (self._rect.width * 0.1, self._rect.height * 0.1)
             if self.arrow_location == ARROW_TOUCH:
-                self.right_arrow = pictures.get_pygame_image("hand.png", size, hflip=False,
+                self.right_arrow = pictures.get_pygame_image("printer.png", size, hflip=False,
                                                              vflip=False, angle=0, color=self._text_color)
             else:
                 vflip = True if self.arrow_location == ARROW_TOP else False
