@@ -87,7 +87,7 @@ class PiWindow(object):
         if pos == self.FULLSCREEN:
             image_size_max = (self.surface.get_size()[0] * 0.9, self.surface.get_size()[1] * 0.9)
         else:
-            image_size_max = (self.surface.get_size()[0] * 0.48, self.surface.get_size()[1]*0.8)
+            image_size_max = (self.surface.get_size()[0] * 0.68, self.surface.get_size()[1]*0.8)
 
         buff_size, buff_image = self._buffered_images.get(image_name, (None, None))
         if buff_image and image_size_max == buff_size:
@@ -239,7 +239,7 @@ class PiWindow(object):
             self._update_background(background.IntroBackground(self.arrow_location, self.arrow_offset))
 
         if pil_image:
-            self._update_foreground(pil_image, self.FULLSCREEN)
+            self._update_foreground(pil_image, self.RIGHT)
         elif self._current_foreground:
             self._buffered_images.pop(id(self._current_foreground[0]), None)
             self._current_foreground = None
