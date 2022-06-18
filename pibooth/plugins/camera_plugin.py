@@ -72,7 +72,7 @@ class CameraPlugin(object):
     def state_preview_do(self, cfg, app):
         pygame.event.pump()  # Before blocking actions
         if cfg.getboolean('WINDOW', 'preview_countdown'):
-            app.camera.preview_countdown(cfg.getint('WINDOW', 'preview_delay'), alpha=100)
+            app.camera.preview_countdown(cfg.getint('WINDOW', 'preview_delay'), alpha=1000)
         else:
             app.camera.preview_wait(cfg.getint('WINDOW', 'preview_delay'))
 
