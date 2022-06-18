@@ -299,7 +299,7 @@ class IntroWithPrintBackground(IntroBackground):
             if self.arrow_location == ARROW_TOP:
                 rect.top = self._rect.height * 0.08
             else:
-                rect.bottom = self._rect.height - self._rect.height * 0.08
+                rect.bottom = self._rect.height - self._rect.height * 0.15
             self._write_text(text, rect)
 
     def paint(self, screen):
