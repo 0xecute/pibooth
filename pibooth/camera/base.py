@@ -82,7 +82,7 @@ class BaseCamera(object):
         txt_width, txt_height = draw.textsize(text, font=font)
 
         position = ((size[0] - txt_width) // 2, (size[1] - txt_height) // 2 - size[1] // 10)
-        draw.text(position, text, (0, 0, 0, 0), font=font)
+        draw.text(position, text, (255, 160, 122, 90), font=font)
         return image
 
     def preview(self, window, flip=True):
