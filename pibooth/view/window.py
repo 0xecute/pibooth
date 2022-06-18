@@ -239,7 +239,7 @@ class PiWindow(object):
             self._update_background(background.IntroBackground(self.arrow_location, self.arrow_offset))
 
         if pil_image:
-            self._update_foreground(pil_image, self.RIGHT)
+            self._update_foreground(pil_image, self.FULLSCREEN)
         elif self._current_foreground:
             self._buffered_images.pop(id(self._current_foreground[0]), None)
             self._current_foreground = None
