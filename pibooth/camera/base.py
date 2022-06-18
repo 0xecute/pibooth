@@ -71,7 +71,7 @@ class BaseCamera(object):
                                                 (rect.width - 2 * self._border, rect.height - 2 * self._border))
         return pygame.Rect(rect.centerx - res[0] // 2, rect.centery - res[1] // 2, res[0], res[1])
 
-    def build_overlay(self, size, text, alpha):
+    def build_overlay(self, size, text, alpha, color=(255,255,255)):
         """Return a PIL image with the given text that can be used
         as an overlay for the camera.
         """
@@ -82,7 +82,9 @@ class BaseCamera(object):
         txt_width, txt_height = draw.textsize(text, font=font)
 
         position = ((size[0] - txt_width) // 2, (size[1] - txt_height) // 2 - size[1] // 10)
-        draw.text(position, text, (255, 160, 122), font=font)
+        colors = (color[0],color[1],color[2],alpha)
+        draw.text(position, text, colors, font=font)
+
         return image
 
     def preview(self, window, flip=True):
