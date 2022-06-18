@@ -195,7 +195,6 @@ class IntroBackground(Background):
         self.arrow_offset = arrow_offset
         self.left_arrow = None
         self.left_arrow_pos = None
-        self.ratio_text_left = 2
 
     def resize(self, screen):
         Background.resize(self, screen)
@@ -237,7 +236,7 @@ class IntroBackground(Background):
             align = 'bottom-center'
         elif self.arrow_location == ARROW_TOUCH:
             rect = pygame.Rect(self._text_border, self._text_border,
-                               self._rect.width / self.ratio_text_left - 2 * self._text_border,
+                               self._rect.width / 2 - 2 * self._text_border,
                                self._rect.height * 0.4 - self._text_border)
             align = 'bottom-center'
         else:
@@ -259,7 +258,8 @@ class IntroWithPrintBackground(IntroBackground):
         IntroBackground.__init__(self, arrow_location, arrow_offset)
         self.right_arrow = None
         self.right_arrow_pos = None
-        self.ratio_text_left = 4
+
+
 
     def __str__(self):
         """Return background final name.
