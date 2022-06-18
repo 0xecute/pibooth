@@ -172,7 +172,7 @@ class ViewPlugin(object):
             timeout = cfg.getfloat('WINDOW', 'finish_picture_delay')
         else:
             win.show_finished()
-            timeout = 1
+            timeout = 0
 
         # Reset timeout in case of settings changed
         self.finish_timer.timeout = timeout
