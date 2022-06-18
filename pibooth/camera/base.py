@@ -82,7 +82,7 @@ class BaseCamera(object):
         txt_width, txt_height = draw.textsize(text, font=font)
 
         position = ((size[0] - txt_width) // 2, (size[1] - txt_height) // 2 - size[1] // 10)
-        colors = (color[0],color[1],color[2])
+        colors = (color[0],color[1],color[2],alpha)
         draw.text(position, text, colors, font=font)
 
         return image
