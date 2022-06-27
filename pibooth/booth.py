@@ -461,7 +461,7 @@ def main():
     if config.get('GENERAL', 'log_path'):
         filename = config.get('GENERAL', 'log_path')
 
-    configure_logging(options.logging, '[ %(levelname)-8s] %(name)-18s: %(message)s', filename=filename)
+    configure_logging(options.logging, '[ %(levelname)-8s] %(asctime)s %(name)-18s: %(message)s', filename=filename)
 
 
     # Register plugins
