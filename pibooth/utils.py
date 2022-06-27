@@ -161,7 +161,7 @@ def configure_logging(level=logging.INFO, msgfmt=logging.BASIC_FORMAT, datefmt=N
             dirname = osp.dirname(filename)
             if not osp.isdir(dirname):
                 os.makedirs(dirname)
-            hdlr = logging.FileHandler(filename, mode='w')
+            hdlr = logging.FileHandler(filename, mode='a')
             hdlr.setFormatter(logging.Formatter(msgfmt, datefmt))
             hdlr.setLevel(logging.DEBUG)
             root.addHandler(hdlr)
