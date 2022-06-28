@@ -463,7 +463,7 @@ def main():
 
     configure_logging(options.logging, '[ %(levelname)-8s] %(asctime)s %(name)-18s: %(message)s', filename=filename)
 
-
+    LOGGER.info("------- STARTUP -------")
     # Register plugins
     plugin_manager.load_all_plugins(config.gettuple('GENERAL', 'plugins', 'path'),
                                     config.gettuple('GENERAL', 'plugins_disabled', str))
