@@ -434,7 +434,7 @@ class CaptureBackground(Background):
         self.right_people_pos = None
 
     def resize(self, screen):
-        self._background_image = None
+        self._background_image = (0,0,0)
         Background.resize(self, screen)
         if self._need_update:
             images_height = self._rect.height / 4
@@ -466,6 +466,11 @@ class ProcessingBackground(Background):
     def __init__(self):
         Background.__init__(self, "processing")
 
+    def resize(self, screen):
+        self._background_image = (0, 0, 0)
+        Background.resize(self, screen)
+
+
     def resize_texts(self):
         """Update text surfaces.
         """
@@ -487,7 +492,7 @@ class PrintBackground(Background):
 
 
     def resize(self, screen):
-        self._background_image = None
+        self._background_image = (0,0,0)
 
         Background.resize(self, screen)
         if self._need_update and self.arrow_location != ARROW_HIDDEN:
