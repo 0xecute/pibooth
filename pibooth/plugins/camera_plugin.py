@@ -60,6 +60,7 @@ class CameraPlugin(object):
                 app.capture_nbr = app.capture_choices[0]
             elif event.key == pygame.K_RIGHT:
                 app.capture_nbr = app.capture_choices[1]
+            self.count = 0
 
     @pibooth.hookimpl
     def state_preview_enter(self, cfg, app, win):
