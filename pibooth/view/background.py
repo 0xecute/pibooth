@@ -434,7 +434,8 @@ class CaptureBackground(Background):
         self.right_people_pos = None
 
     def resize(self, screen):
-        self._background_image = (0,0,0)
+        self._background_color = (0,0,0)
+        self._background_image = None
         Background.resize(self, screen)
         if self._need_update:
             images_height = self._rect.height / 4
@@ -467,7 +468,8 @@ class ProcessingBackground(Background):
         Background.__init__(self, "processing")
 
     def resize(self, screen):
-        self._background_image = (0, 0, 0)
+        self._background_color = (0, 0, 0)
+        self._background_image = None
         Background.resize(self, screen)
 
 
@@ -492,7 +494,8 @@ class PrintBackground(Background):
 
 
     def resize(self, screen):
-        self._background_image = (0,0,0)
+        self._background_color = (0, 0, 0)
+        self._background_image = None
 
         Background.resize(self, screen)
         if self._need_update and self.arrow_location != ARROW_HIDDEN:
