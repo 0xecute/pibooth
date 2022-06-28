@@ -116,6 +116,6 @@ class CameraPlugin(object):
 
     @pibooth.hookimpl
     def state_capture_exit(self, cfg, app):
-        #app.leds.capture.off()
+        app.leds.capture.off()
         if not cfg.getboolean('WINDOW', 'preview_stop_on_capture'):
             app.camera.stop_preview()
