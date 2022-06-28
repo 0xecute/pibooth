@@ -75,9 +75,13 @@ class CameraPlugin(object):
         if cfg.getboolean('WINDOW', 'preview_countdown'):
             LOGGER.info(f"COUNTER: {self.count}")
             if self.count == 0:
-                app.camera.preview_countdown(cfg.getint('WINDOW', 'preview_delay'), alpha=1000)
+                preview = cfg.getint('WINDOW', 'preview_delay')
             else:
-                app.camera.preview_countdown(3, alpha=1000)
+                preview = cfg.getint('WINDOW', 'preview_delay_next')
+                if preview==None:
+                    preview = cfg.getint('WINDOW', 'preview_delay')
+            app.camera.preview_countdown(preview, alpha=1000)
+
         else:
             app.camera.preview_wait(cfg.getint('WINDOW', 'preview_delay'))
 
