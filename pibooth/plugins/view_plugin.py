@@ -144,7 +144,7 @@ class ViewPlugin(object):
         if app.printer.is_ready() and cfg.getfloat('PRINTER', 'printer_delay') > 0\
                 and app.count.remaining_duplicates > 0:
             return 'print'
-        return 'wait'  # Can not print
+        return 'finish'  # Can not print
 
     @pibooth.hookimpl
     def state_print_enter(self, cfg, app, win):
@@ -163,7 +163,7 @@ class ViewPlugin(object):
         if self.print_view_timer.is_timeout() or printed or self.forgotten:
             if printed:
                 win.set_print_number(len(app.printer.get_all_tasks()), not app.printer.is_ready())
-            return 'wait'
+            return 'finish'
 
     @pibooth.hookimpl
     def state_finish_enter(self, cfg, app, win):
