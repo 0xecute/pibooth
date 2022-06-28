@@ -258,7 +258,6 @@ class IntroWithPrintBackground(IntroBackground):
         IntroBackground.__init__(self, arrow_location, arrow_offset)
         self.right_arrow = None
         self.right_arrow_pos = None
-        self._background_image = None
 
 
 
@@ -435,6 +434,7 @@ class CaptureBackground(Background):
         self.right_people_pos = None
 
     def resize(self, screen):
+        self._background_image = None
         Background.resize(self, screen)
         if self._need_update:
             images_height = self._rect.height / 4
@@ -484,9 +484,11 @@ class PrintBackground(Background):
         self.right_arrow_pos = None
         self.left_arrow = None
         self.left_arrow_pos = None
-        self._background_image = None
+
 
     def resize(self, screen):
+        self._background_image = None
+
         Background.resize(self, screen)
         if self._need_update and self.arrow_location != ARROW_HIDDEN:
 
