@@ -105,6 +105,7 @@ class CameraPlugin(object):
                 app.capture_nbr, effects))
 
         LOGGER.info("Take a capture")
+        app.leds.capture.on()
         if cfg.getboolean('WINDOW', 'flash'):
             with win.flash(2):  # Manage the window here, have no choice
                 app.camera.capture(effect)
@@ -115,5 +116,6 @@ class CameraPlugin(object):
 
     @pibooth.hookimpl
     def state_capture_exit(self, cfg, app):
+        app.leds.capture.off()
         if not cfg.getboolean('WINDOW', 'preview_stop_on_capture'):
             app.camera.stop_preview()
