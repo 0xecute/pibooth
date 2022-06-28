@@ -258,6 +258,7 @@ class IntroWithPrintBackground(IntroBackground):
         IntroBackground.__init__(self, arrow_location, arrow_offset)
         self.right_arrow = None
         self.right_arrow_pos = None
+        self._background_image = None
 
 
 
@@ -483,6 +484,7 @@ class PrintBackground(Background):
         self.right_arrow_pos = None
         self.left_arrow = None
         self.left_arrow_pos = None
+        self._background_image = None
 
     def resize(self, screen):
         Background.resize(self, screen)
