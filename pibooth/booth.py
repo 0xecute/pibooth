@@ -130,15 +130,15 @@ class PiApplication(object):
 
         self.camera = self._pm.hook.pibooth_setup_camera(cfg=self._config)
 
-        self.buttons = ButtonBoard(capture="BOARD" + config.get('CONTROLS', 'picture_btn_pin'),
-                                   printer="BOARD" + config.get('CONTROLS', 'print_btn_pin'),
+        self.buttons = ButtonBoard(capture=config.get('CONTROLS', 'picture_btn_pin'),
+                                   printer=config.get('CONTROLS', 'print_btn_pin'),
                                    hold_time=config.getfloat('CONTROLS', 'debounce_delay'),
                                    pull_up=True)
         self.buttons.capture.when_held = self._on_button_capture_held
         self.buttons.printer.when_held = self._on_button_printer_held
 
-        self.leds = LEDBoard(capture="BOARD" + config.get('CONTROLS', 'picture_led_pin'),
-                             printer="BOARD" + config.get('CONTROLS', 'print_led_pin'))
+        self.leds = LEDBoard(capture=config.get('CONTROLS', 'picture_led_pin'),
+                             printer=config.get('CONTROLS', 'print_led_pin'))
 
         self.printer = Printer(config.get('PRINTER', 'printer_name'),
                                config.getint('PRINTER', 'max_pages'),
