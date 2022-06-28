@@ -70,6 +70,7 @@ class StateMachine(object):
         """Change state machine's active state
         """
         try:
+            LOGGER.debug(f"CHANING STATE TO {state_name}")
             # Perform any exit actions of the current state
             if self.active_state is not None:
                 hook = getattr(self.pm.hook, 'state_{}_exit'.format(self.active_state))
