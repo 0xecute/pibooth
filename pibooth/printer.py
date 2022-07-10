@@ -58,10 +58,7 @@ class Printer(object):
         else:
             LOGGER.info("Connected to printer '%s'", self.name)
 
-        if self.options and not isinstance(self.options, dict):
-            LOGGER.warning("Invalid printer options '%s', dict is expected", self.options)
-            self.options = {}
-        elif not options:
+        if not options:
             self.options = {}
 
     def _on_event(self, evt):
