@@ -90,6 +90,9 @@ class Printer(object):
         options = self.options
 
         choices = app.capture_choices
+
+        LOGGER.info(f"choices: {choices}, capture_nbr: {app.capture_nbr}")
+
         choice = choices.index(app.capture_nbr)
 
         if not isinstance(options, (list, tuple)):
