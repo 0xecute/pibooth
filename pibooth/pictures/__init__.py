@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import logging
 import os.path as osp
 from PIL import Image, ImageOps
 import pygame
@@ -185,6 +185,7 @@ def get_picture_factory(captures, orientation=AUTO, paper_format=(4, 6), force_p
     size = (paper_format[0] * dpi, paper_format[1] * dpi)
     if orientation == LANDSCAPE:
         size = (size[1], size[0])
+    logging.info(f"Using size {size}")
 
     if not factory.cv2 or force_pil:
         return factory.PilPictureFactory(size[0], size[1], *captures)
