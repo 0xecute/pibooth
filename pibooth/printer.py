@@ -90,8 +90,8 @@ class Printer(object):
         """Send a file to the CUPS server to the default printer.
         """
         filename = app.previous_picture_file
-        taken = app.count.taken
-        LOGGER.info(f"Taken: {taken}")
+        taken = app.capture_choices
+        LOGGER.info(f"capture_choices: {taken}")
         _options = {}
         if taken == 3:
             _options["media"] = "w288h432-div2"
