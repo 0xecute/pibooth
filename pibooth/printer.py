@@ -16,8 +16,7 @@ import os.path as osp
 import pygame
 from PIL import Image
 from pibooth.utils import LOGGER
-from pibooth.pictures import get_picture_factory
-
+from pibooth.pictures import get_picture_factory, LANDSCAPE
 
 PRINTER_TASKS_UPDATED = pygame.USEREVENT + 2
 
@@ -112,7 +111,7 @@ class Printer(object):
         if copies > 1:
             with tempfile.NamedTemporaryFile(suffix=osp.basename(filename)) as fp:
                 picture = Image.open(filename)
-                factory = get_picture_factory((picture,) * copies)
+                factory = get_picture_factory((picture,) * copies, orientation=LANDSCAPE)
                 # Don't call setup factory hook here, as the selected parameters
                 # are the one necessary to render several pictures on same page.
                 factory.set_margin(2)
