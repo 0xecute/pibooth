@@ -12,6 +12,7 @@ from pibooth.pictures import sizing
 AUTO = 'auto'
 PORTRAIT = 'portrait'
 LANDSCAPE = 'landscape'
+from pibooth.utils import LOGGER
 
 
 def get_filename(name):
@@ -185,7 +186,7 @@ def get_picture_factory(captures, orientation=AUTO, paper_format=(4, 6), force_p
     size = (paper_format[0] * dpi, paper_format[1] * dpi)
     if orientation == LANDSCAPE:
         size = (size[1], size[0])
-    logging.info(f"Using size {size}")
+    LOGGER.info(f"Using size {size}")
 
     if not factory.cv2 or force_pil:
         return factory.PilPictureFactory(size[0], size[1], *captures)
