@@ -133,6 +133,7 @@ class RpiCamera(BaseCamera):
         """
         self._hide_overlay()
         self._cam.stop_preview()
+        self._cam.close()
         self._window = None
 
     def capture(self, effect=None):
