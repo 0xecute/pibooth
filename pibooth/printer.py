@@ -95,7 +95,7 @@ class Printer(object):
         _options = {}
         if taken == 3:
             _options["media"] = "w288h432-div2"
-            _options["landscape"] = True
+            _options["landscape"] = "1"
             copies = 2
         if not self.name:
             raise EnvironmentError("No printer found (check config file or CUPS config)")
