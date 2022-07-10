@@ -86,9 +86,16 @@ class Printer(object):
             return True
         return self.count.printed < self.max_pages
 
-    def print_file(self, filename, copies=1):
+    def print_file(self, app, copies=1):
         """Send a file to the CUPS server to the default printer.
         """
+        filename = app.previous_picture_file
+        taken = app.count.taken
+        LOGGER.info(f"Taken: {taken}")
+        _options = {}
+        if taken == 3:
+            _options["media"] = "w288h432-div2"
+            copies = 2
         if not self.name:
             raise EnvironmentError("No printer found (check config file or CUPS config)")
         if not osp.isfile(filename):
@@ -108,10 +115,10 @@ class Printer(object):
                 # are the one necessary to render several pictures on same page.
                 factory.set_margin(2)
                 factory.save(fp.name)
-                self._conn.printFile(self.name, fp.name, osp.basename(filename), self.options)
+                self._conn.printFile(self.name, fp.name, osp.basename(filename), {**self.options, **_options})
         else:
-            self._conn.printFile(self.name, filename, osp.basename(filename), self.options)
-        LOGGER.debug("File '%s' sent to the printer with options %s", filename, self.options)
+            self._conn.printFile(self.name, filename, osp.basename(filename), {**self.options, **_options})
+        LOGGER.debug("File '%s' sent to the printer with options %s", filename, {**self.options, **_options})
 
     def cancel_all_tasks(self):
         """Cancel all tasks in the queue.
