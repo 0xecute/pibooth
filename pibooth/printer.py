@@ -2,6 +2,7 @@
 
 """Pibooth printer handling.
 """
+import os
 
 try:
     import cups
@@ -116,6 +117,8 @@ class Printer(object):
                 # are the one necessary to render several pictures on same page.
                 factory.set_margin(2)
                 factory.save(fp.name)
+                import shutil
+                shutil.copyfile(filename,"/tmp/a.jpg")
                 self._conn.printFile(self.name, fp.name, osp.basename(filename), {**self.options, **_options})
         else:
             self._conn.printFile(self.name, filename, osp.basename(filename), {**self.options, **_options})
