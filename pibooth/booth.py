@@ -142,7 +142,6 @@ class PiApplication(object):
 
         self.printer = Printer(config.get('PRINTER', 'printer_name'),
                                config.getint('PRINTER', 'max_pages'),
-                               config.gettyped('PRINTER', 'printer_options'),
                                self.count)
         # ---------------------------------------------------------------------
 
