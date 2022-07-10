@@ -118,7 +118,7 @@ class Printer(object):
                 factory.set_margin(2)
                 factory.save(fp.name)
                 import shutil
-                shutil.copyfile(filename,"/tmp/a.jpg")
+                shutil.copyfile(fp.name,"/tmp/a.jpg")
                 self._conn.printFile(self.name, fp.name, osp.basename(filename), {**self.options, **_options})
         else:
             self._conn.printFile(self.name, filename, osp.basename(filename), {**self.options, **_options})
