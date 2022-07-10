@@ -32,11 +32,12 @@ PAPER_FORMATS = {
 
 class Printer(object):
 
-    def __init__(self, name='default', max_pages=-1,counters=None):
+    def __init__(self, options, name='default', max_pages=-1,counters=None):
         self._conn = cups.Connection() if cups else None
         self._notifier = Subscriber(self._conn) if cups else None
         self.name = None
         self.max_pages = max_pages
+        self.options = options
         self.count = counters
         if not cups:
             LOGGER.warning("No printer found (pycups or pycups-notify not installed)")
@@ -57,7 +58,11 @@ class Printer(object):
         else:
             LOGGER.info("Connected to printer '%s'", self.name)
 
-
+        if self.options and not isinstance(self.options, dict):
+            LOGGER.warning("Invalid printer options '%s', dict is expected", self.options)
+            self.options = {}
+        elif not options:
+            self.options = {}
 
     def _on_event(self, evt):
         """
@@ -85,13 +90,7 @@ class Printer(object):
         """Send a file to the CUPS server to the default printer.
         """
         filename = app.previous_picture_file
-        options = app.config.gettyped('PRINTER', 'printer_options')
-
-        if options and not isinstance(options, dict):
-            LOGGER.warning("Invalid printer options '%s', dict is expected", self.options)
-            self.options = {}
-        elif not options:
-            options = {}
+        options = self.options
 
         choices = app.capture_choices
         choice = choices.index(app.capture_nbr)

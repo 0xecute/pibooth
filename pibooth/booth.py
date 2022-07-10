@@ -140,7 +140,8 @@ class PiApplication(object):
         self.leds = LEDBoard(capture=config.get('CONTROLS', 'picture_led_pin'),
                              printer=config.get('CONTROLS', 'print_led_pin'))
 
-        self.printer = Printer(config.get('PRINTER', 'printer_name'),
+        self.printer = Printer(config.gettyped('PRINTER', 'printer_options'),
+                               config.get('PRINTER', 'printer_name'),
                                config.getint('PRINTER', 'max_pages'),
                                self.count)
         # ---------------------------------------------------------------------
