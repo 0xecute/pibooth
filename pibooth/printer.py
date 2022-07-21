@@ -92,16 +92,17 @@ class Printer(object):
         choices = app.capture_choices
 
         LOGGER.info(f"choices: {choices}, capture_nbr: {app.capture_nbr}")
+        if app.capture_nbr != None:
 
-        choice = choices.index(app.capture_nbr)
+            choice = choices.index(app.capture_nbr)
 
-        if not isinstance(options, (list, tuple)):
-            options = options
-        elif len(options) >= choice:
-            # Take the effect corresponding to the current capture
-            options = options[choice]
+            if not isinstance(options, (list, tuple)):
+                options = options
+            elif len(options) >= choice:
+                # Take the effect corresponding to the current capture
+                options = options[choice]
 
-        LOGGER.info(f"capture_choices: {app.capture_nbr}, choice: {choice}, options: {options}")
+            LOGGER.info(f"capture_choices: {app.capture_nbr}, choice: {choice}, options: {options}")
 
         if not self.name:
             raise EnvironmentError("No printer found (check config file or CUPS config)")

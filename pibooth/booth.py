@@ -118,6 +118,7 @@ class PiApplication(object):
         # Variables shared with plugins
         # Change them may break plugins compatibility
         self.capture_nbr = None
+        self.last_capture_nbr = None
         self.capture_date = None
         self.capture_choices = (4, 1)
         self.previous_picture = None
