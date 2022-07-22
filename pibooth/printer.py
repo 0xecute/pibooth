@@ -103,6 +103,8 @@ class Printer(object):
                 options = options[choice]
 
             LOGGER.info(f"capture_choices: {app.capture_nbr}, choice: {choice}, options: {options}")
+        else:
+            options = {}
 
         if not self.name:
             raise EnvironmentError("No printer found (check config file or CUPS config)")
