@@ -91,7 +91,7 @@ DEFAULT = {
         'smile': "Souriez !",
         'processing': "Préparation du montage",
         'print': "Imprimer la photo ?",
-        'print_forget': "Supprimer",
+        'print_forget': "Ignorer",
         'finished': "Merci",
         'oops': "Oups quelque chose s'est mal passé",
     },

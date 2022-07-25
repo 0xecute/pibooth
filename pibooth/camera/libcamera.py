@@ -2,13 +2,15 @@
 
 import time
 import pygame
+from pibooth.utils import PoolingTimer, LOGGER
+
 try:
     import libcamera
+    LOGGER.info("LIBCAMERA IMPORTED SUCCESSFULLY")
 except ImportError:
     libcamera = None  # libcamera is optional
 from PIL import Image, ImageFilter
 from pibooth.pictures import sizing
-from pibooth.utils import PoolingTimer, LOGGER
 from pibooth.language import get_translated_text
 from pibooth.camera.base import BaseCamera
 
