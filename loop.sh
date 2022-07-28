@@ -18,13 +18,13 @@ take_one() {
 take_three() {
   `$LEFT`
   `$LEFT`
-  sleep $WAIT
+  sleep $(( $WAIT * 3 ))
   `$LEFT`
 }
 
 
 
-while [ $x -le 5 ]
+while [ $x -le 100 ]
 do
   take_one
   take_three
