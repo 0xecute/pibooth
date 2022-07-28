@@ -6,13 +6,6 @@ LEFT="xdotool mousemove 100 100 click 1"
 
 WAIT=10
 
-while [ $x -le 5 ]
-do
-  take_one
-  take_three
-  x=$(( $x + 1 ))
-done
-
 
 
 take_one() {
@@ -28,3 +21,12 @@ take_three() {
   sleep $WAIT
   `$LEFT`
 }
+
+
+
+while [ $x -le 5 ]
+do
+  take_one
+  take_three
+  x=$(( $x + 1 ))
+done
