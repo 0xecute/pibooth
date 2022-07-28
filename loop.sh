@@ -18,7 +18,7 @@ take_one() {
 take_three() {
   `$LEFT`
   `$LEFT`
-  sleep $(( $WAIT * 3 ))
+  sleep $(( $WAIT * 2 ))
   `$LEFT`
 }
 
