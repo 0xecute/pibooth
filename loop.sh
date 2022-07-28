@@ -4,7 +4,7 @@ x=1
 RIGHT="xdotool mousemove 600 100 click 1"
 LEFT="xdotool mousemove 100 100 click 1"
 
-WAIT=10
+WAIT=$1
 
 
 
