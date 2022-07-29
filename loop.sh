@@ -24,7 +24,7 @@ take_three() {
 
 
 
-while [ $x -le 100 ]
+while [ $x -le 300 ]
 do
   take_one
   take_three
