@@ -90,11 +90,12 @@ class Printer(object):
         options = self.options
 
         choices = app.capture_choices
+        capture_nbr = app.capture_nbr or app.last_capture_nbr
 
-        LOGGER.info(f"choices: {choices}, capture_nbr: {app.capture_nbr}")
-        if app.capture_nbr != None:
+        LOGGER.info(f"choices: {choices}, capture_nbr: {capture_nbr}")
+        if capture_nbr != None:
 
-            choice = choices.index(app.capture_nbr)
+            choice = choices.index(capture_nbr)
 
             if not isinstance(options, (list, tuple)):
                 options = options
@@ -102,7 +103,7 @@ class Printer(object):
                 # Take the effect corresponding to the current capture
                 options = options[choice]
 
-            LOGGER.info(f"capture_choices: {app.capture_nbr}, choice: {choice}, options: {options}")
+            LOGGER.info(f"capture_choices: {capture_nbr}, choice: {choice}, options: {options}")
         else:
             options = {}
 
