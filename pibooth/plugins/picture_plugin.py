@@ -117,7 +117,7 @@ class PicturePlugin(object):
                                                               opt_index=idx,
                                                               factory=default_factory)
         app.previous_picture = factory.build()
-
+        app.last_capture_nbr = app.capture_nbr
         for savedir in cfg.gettuple('GENERAL', 'directory', 'path'):
             app.previous_picture_file = osp.join(savedir, app.picture_filename)
             factory.save(app.previous_picture_file)
@@ -151,6 +151,7 @@ class PicturePlugin(object):
             self._reset_vars(app)
             app.count.forgotten += 1
             app.previous_picture = self.second_previous_picture
+            app.capture_nbr = app.last_capture_nbr
 
             # Deactivate the print function for the backuped picture
             # as we don't known how many times it has already been printed
