@@ -48,6 +48,7 @@ class CameraPlugin(object):
     def state_wait_enter(self, app):
         app.capture_date = None
         if len(app.capture_choices) > 1:
+            app.previous_capture_nbr = app.capture_nbr
             app.capture_nbr = None
         else:
             app.capture_nbr = app.capture_choices[0]
