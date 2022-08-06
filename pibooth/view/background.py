@@ -601,6 +601,8 @@ class FinishedBackground(Background):
         self.left_people_pos = None
         self.right_people = None
         self.right_people_pos = None
+        self._background_image = None
+
 
     def resize(self, screen):
         Background.resize(self, screen)
