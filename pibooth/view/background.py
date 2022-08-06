@@ -491,6 +491,7 @@ class PrintBackground(Background):
         self.right_arrow_pos = None
         self.left_arrow = None
         self.left_arrow_pos = None
+        self._background_image = None
 
 
     def resize(self, screen):
