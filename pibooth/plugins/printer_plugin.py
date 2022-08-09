@@ -16,6 +16,7 @@ class PrinterPlugin(object):
 
     def print_picture(self, cfg, app):
         if self.printing_status != None:
+            LOGGER.info("Skip the parallel printing")
             return
 
         self.printing_status = "Printing"
