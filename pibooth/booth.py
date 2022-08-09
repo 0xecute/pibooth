@@ -190,7 +190,7 @@ class PiApplication(object):
             set_logging_level()  # Restore default level
             self._machine.add_failsafe_state('failsafe')
         else:
-            set_logging_level(logging.DEBUG)
+            set_logging_level(logging.INFO)
             self._machine.remove_state('failsafe')
 
         # Reset the print counter (in case of max_pages is reached)

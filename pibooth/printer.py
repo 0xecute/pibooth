@@ -66,7 +66,7 @@ class Printer(object):
         """
         Call for each new printer event.
         """
-        LOGGER.info(evt.title)
+        LOGGER.info(f"PRINTER EVENT: {evt.title}")
         pygame.event.post(pygame.event.Event(PRINTER_TASKS_UPDATED,
                                              tasks=self.get_all_tasks()))
 
