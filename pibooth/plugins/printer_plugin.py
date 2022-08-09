@@ -12,6 +12,7 @@ class PrinterPlugin(object):
     def __init__(self, plugin_manager):
         self._pm = plugin_manager
         self.printing_status = None
+        LOGGER.info("SETUP PRINTER PLUGIN")
 
 
     def print_picture(self, cfg, app):
