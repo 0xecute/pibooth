@@ -25,15 +25,9 @@ class PrintingPlugin(object):
         self.timer.start()
 
     @pibooth.hookimpl
-    def state_printing_do(self, cfg, app, events):
-        if app.find_print_completed_status_event(events):
-            LOGGER.info("RECEIVE COMPLETED EVENT")
-            return 'wait'
-
-    @pibooth.hookimpl
     def state_printing_validate(self, cfg, app, events):
-        if self.timer.is_timeout():
-            LOGGER.info("TIMEOUT PRINTING")
+        if self.timer.is_timeout() or app.find_print_completed_status_event(events):
+            LOGGER.info("RECEIVE COMPLETED EVENT OR TIMEOUT")
             return 'wait'
 
     @pibooth.hookimpl
