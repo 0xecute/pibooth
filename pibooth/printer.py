@@ -20,6 +20,8 @@ from pibooth.pictures import get_picture_factory, LANDSCAPE
 
 PRINTER_TASKS_UPDATED = pygame.USEREVENT + 2
 
+PRINTER_TASKS_COMPLETED = pygame.USEREVENT + 3
+
 PAPER_FORMATS = {
     '2x6': (2, 6),      # 2x6 pouces - 5x15 cm - 51x152 mm
     '3,5x5': (3.5, 5),  # 3,5x5 pouces - 9x13 cm - 89x127 mm
@@ -67,7 +69,17 @@ class Printer(object):
         Call for each new printer event.
         """
         LOGGER.info(f"PRINTER EVENT: {evt.title} - {evt.description}")
+
         pygame.event.post(pygame.event.Event(PRINTER_TASKS_UPDATED,
+                                             tasks=self.get_all_tasks()))
+
+    def _on_event_end_printing(self, evt):
+        """
+        Call for each ending printer event.
+        """
+        LOGGER.info(f"END PRINTER EVENT: {evt.title} - {evt.description}")
+
+        pygame.event.post(pygame.event.Event(PRINTER_TASKS_COMPLETED,
                                              tasks=self.get_all_tasks()))
 
     def is_installed(self):
@@ -117,6 +129,10 @@ class Printer(object):
                                                       event.CUPS_EVT_JOB_CREATED,
                                                       event.CUPS_EVT_JOB_STOPPED,
                                                       event.CUPS_EVT_PRINTER_STATE_CHANGED,
+                                                      event.CUPS_EVT_PRINTER_STOPPED])
+        if self._notifier and not self._notifier.is_subscribed(self._on_event_end_printing):
+            self._notifier.subscribe(self._on_event_end_printing, [event.CUPS_EVT_JOB_COMPLETED,
+                                                      event.CUPS_EVT_JOB_STOPPED,
                                                       event.CUPS_EVT_PRINTER_STOPPED])
 
         if copies > 1:

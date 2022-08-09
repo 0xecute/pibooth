@@ -17,23 +17,26 @@ class PrintingPlugin(object):
     """
 
     def __init__(self, plugin_manager):
-        self.texts_vars = {}
-
-    def _reset_vars(self, app):
-        """Destroy final picture (can not be used anymore).
-        """
-        app.previous_picture_file = None
+        self.timer = PoolingTimer(10)
 
 
     @pibooth.hookimpl
     def state_printing_enter(self, app):
-        self._reset_vars(app)
+        self.timer.start()
 
     @pibooth.hookimpl
     def state_printing_do(self, cfg, app, events):
-        if app.find_print_event(events) and app.previous_picture_file and app.printer.is_installed():
-            LOGGER.info("PRINTING SOMETHING")
-
         LOGGER.info("PRINTING DO")
-        time.sleep(10)
+        if app.find_print_completed_status_event(events):
+            LOGGER.info("RECEIVE COMPLETED EVENT")
+            return 'wait'
+
+    def state_printing_validate(self, cfg, app, events):
+        if self.timer.is_timeout():
+            LOGGER.info("TIMEOUT PRINTING")
+            return 'wait'
+
+    @pibooth.hookimpl
+    def state_printing_exit(self, app):
+        LOGGER.info("CANCEL ALL TASKS")
         app.printer.cancel_all_tasks()

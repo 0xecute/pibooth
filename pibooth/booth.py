@@ -27,8 +27,7 @@ from pibooth.states import StateMachine
 from pibooth.plugins import create_plugin_manager
 from pibooth.view import PiWindow
 from pibooth.config import PiConfigParser, PiConfigMenu
-from pibooth.printer import PRINTER_TASKS_UPDATED, Printer
-
+from pibooth.printer import PRINTER_TASKS_UPDATED, Printer, PRINTER_TASKS_COMPLETED
 
 # Set the default pin factory to a mock factory if pibooth is not started a Raspberry Pi
 try:
@@ -339,6 +338,14 @@ class PiApplication(object):
         """
         for event in events:
             if event.type == PRINTER_TASKS_UPDATED:
+                return event
+        return None
+
+    def find_print_completed_status_event(self, events):
+        """Return the first found event if found in the list.
+        """
+        for event in events:
+            if event.type == PRINTER_TASKS_COMPLETED:
                 return event
         return None
 
