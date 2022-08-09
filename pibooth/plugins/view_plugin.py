@@ -151,10 +151,6 @@ class ViewPlugin(object):
         win.show_printing()
 
     @pibooth.hookimpl
-    def state_printing_validate(self, cfg, app):
-        return 'wait'
-
-    @pibooth.hookimpl
     def state_finish_enter(self, cfg, app, win):
         if cfg.getfloat('WINDOW', 'finish_picture_delay') > 0 and not self.forgotten:
             win.show_finished(app.previous_picture)
