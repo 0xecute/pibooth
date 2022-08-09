@@ -3,6 +3,7 @@
 import inspect
 import pluggy
 
+from pibooth.plugins.printing_plugin import PrintingPlugin
 from pibooth.utils import LOGGER, load_module
 from pibooth.plugins import hookspecs
 from pibooth.plugins.camera_plugin import CameraPlugin
@@ -10,6 +11,7 @@ from pibooth.plugins.lights_plugin import LightsPlugin
 from pibooth.plugins.picture_plugin import PicturePlugin
 from pibooth.plugins.printer_plugin import PrinterPlugin
 from pibooth.plugins.view_plugin import ViewPlugin
+from pibooth.view.background import PrintingBackground
 
 
 def create_plugin_manager():
@@ -72,7 +74,9 @@ class PiPluginManager(pluggy.PluginManager):
                     ViewPlugin(self),
                     PrinterPlugin(self),
                     PicturePlugin(self),
-                    CameraPlugin(self)]  # First called
+                    CameraPlugin(self),
+                    PrintingPlugin(self),
+                    ]  # First called
 
         for plugin in plugins:
             self.register(plugin)

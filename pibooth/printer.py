@@ -39,6 +39,7 @@ class Printer(object):
         self.max_pages = max_pages
         self.options = options
         self.count = counters
+        self.job_id = None
         if not cups:
             LOGGER.warning("No printer found (pycups or pycups-notify not installed)")
             return  # CUPS is not installed
@@ -126,9 +127,9 @@ class Printer(object):
                 # are the one necessary to render several pictures on same page.
                 factory.set_margin(2)
                 factory.save(fp.name)
-                self._conn.printFile(self.name, fp.name, osp.basename(filename), options)
+                self.job_id = self._conn.printFile(self.name, fp.name, osp.basename(filename), options)
         else:
-            self._conn.printFile(self.name, filename, osp.basename(filename), options)
+            self.job_id = self._conn.printFile(self.name, filename, osp.basename(filename), options)
         LOGGER.debug("File '%s' sent to the printer with options %s", filename, options)
 
     def cancel_all_tasks(self):

@@ -481,6 +481,27 @@ class ProcessingBackground(Background):
         Background.resize_texts(self, rect)
 
 
+
+
+class PrintingBackground(Background):
+
+    def __init__(self):
+        Background.__init__(self, "printing")
+
+    def resize(self, screen):
+        self._background_color = (255,255,255)
+        self._background_image = None
+        Background.resize(self, screen)
+
+
+    def resize_texts(self):
+        """Update text surfaces.
+        """
+        rect = pygame.Rect(self._text_border, self._rect.height * 0.8 - self._text_border,
+                           self._rect.width - 2 * self._text_border, self._rect.height * 0.2)
+        Background.resize_texts(self, rect)
+
+
 class PrintBackground(Background):
 
     def __init__(self, arrow_location=ARROW_BOTTOM, arrow_offset=0):

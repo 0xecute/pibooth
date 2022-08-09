@@ -147,23 +147,15 @@ class ViewPlugin(object):
         return 'finish'  # Can not print
 
     @pibooth.hookimpl
-    def state_print_enter(self, cfg, app, win):
-        LOGGER.info("Display the final picture")
-        win.show_print(app.previous_picture)
-        win.set_print_number(len(app.printer.get_all_tasks()), not app.printer.is_ready())
-
-        # Reset timeout in case of settings changed
-        self.print_view_timer.timeout = cfg.getfloat('PRINTER', 'printer_delay')
-        self.print_view_timer.start()
+    def state_printing_enter(self, win):
+        win.show_printing()
 
     @pibooth.hookimpl
-    def state_print_validate(self, app, win, events):
-        printed = app.find_print_event(events)
-        self.forgotten = app.find_capture_event(events)
-        if self.print_view_timer.is_timeout() or printed or self.forgotten:
-            if printed:
-                win.set_print_number(len(app.printer.get_all_tasks()), not app.printer.is_ready())
-            return 'wait'
+    def state_printing_validate(self, cfg, app):
+        if app.printer.is_ready() and cfg.getfloat('PRINTER', 'printer_delay') > 0 \
+                and app.count.remaining_duplicates > 0:
+            return 'finish'
+        return 'finish'  # Can not print
 
     @pibooth.hookimpl
     def state_finish_enter(self, cfg, app, win):
@@ -182,3 +174,25 @@ class ViewPlugin(object):
     def state_finish_validate(self):
         if self.finish_timer.is_timeout():
             return 'print'
+
+    @pibooth.hookimpl
+    def state_print_enter(self, cfg, app, win):
+        LOGGER.info("Display the final picture")
+        win.show_print(app.previous_picture)
+        win.set_print_number(len(app.printer.get_all_tasks()), not app.printer.is_ready())
+
+        # Reset timeout in case of settings changed
+        self.print_view_timer.timeout = cfg.getfloat('PRINTER', 'printer_delay')
+        self.print_view_timer.start()
+
+    @pibooth.hookimpl
+    def state_print_validate(self, app, win, events):
+        printed = app.find_print_event(events)
+        self.forgotten = app.find_capture_event(events)
+        if printed:
+            return 'printing'
+        if self.print_view_timer.is_timeout() or printed or self.forgotten:
+            if printed:
+                win.set_print_number(len(app.printer.get_all_tasks()), not app.printer.is_ready())
+            return 'wait'
+
