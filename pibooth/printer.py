@@ -79,10 +79,11 @@ class Printer(object):
         """
         Call for each ending printer event.
         """
-        LOGGER.info(f"END PRINTER EVENT: {evt.title} - {evt.description}")
+        tasks = self.get_all_tasks()
+        if len(tasks) == 0:
+            LOGGER.info(f"END PRINTER EVENT: {evt.title} - {evt.description}")
 
-        pygame.event.post(pygame.event.Event(PRINTER_TASKS_COMPLETED,
-                                             tasks=self.get_all_tasks()))
+            pygame.event.post(pygame.event.Event(PRINTER_TASKS_COMPLETED))
 
     def is_installed(self):
         """Return True if the CUPS server is available for printing.
@@ -135,6 +136,7 @@ class Printer(object):
         if self._notifier and not self._notifier.is_subscribed(self._on_event_end_printing):
             self._notifier.subscribe(self._on_event_end_printing, [event.CUPS_EVT_JOB_COMPLETED,
                                                       event.CUPS_EVT_JOB_STOPPED,
+                                                                   event.CUPS_EVT_PRINTER_STATE_CHANGED,
                                                       event.CUPS_EVT_PRINTER_STOPPED])
 
         if copies > 1:
