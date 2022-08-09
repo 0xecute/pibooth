@@ -30,7 +30,7 @@ class PrintingPlugin(object):
             LOGGER.info("RECEIVE COMPLETED EVENT OR TIMEOUT")
             return 'wait'
 
-    @pibooth.hookimpl
-    def state_printing_exit(self, app):
-        LOGGER.info("CANCEL ALL TASKS")
-        app.printer.cancel_all_tasks()
+    #@pibooth.hookimpl
+    #def state_printing_exit(self, app):
+        #    LOGGER.info("CANCEL ALL TASKS")
+        #app.printer.cancel_all_tasks()
