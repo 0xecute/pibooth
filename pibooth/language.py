@@ -90,6 +90,7 @@ DEFAULT = {
         'chosen': "C'est parti !",
         'smile': "Souriez !",
         'processing': "Préparation du montage",
+        'printing': "Impression en cours",
         'print': "Imprimer la photo ?",
         'print_forget': "Ignorer",
         'finished': "Merci",

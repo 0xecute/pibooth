@@ -152,10 +152,7 @@ class ViewPlugin(object):
 
     @pibooth.hookimpl
     def state_printing_validate(self, cfg, app):
-        if app.printer.is_ready() and cfg.getfloat('PRINTER', 'printer_delay') > 0 \
-                and app.count.remaining_duplicates > 0:
-            return 'finish'
-        return 'finish'  # Can not print
+        return 'wait'
 
     @pibooth.hookimpl
     def state_finish_enter(self, cfg, app, win):
