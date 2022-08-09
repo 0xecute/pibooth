@@ -79,6 +79,9 @@ class ViewPlugin(object):
             if cfg.getfloat('WINDOW', 'chosen_delay') > 0:
                 return 'chosen'
             return 'preview'
+        printed = app.find_print_event(events)
+        if printed:
+            return 'printing'
 
     @pibooth.hookimpl
     def state_wait_exit(self, win):
