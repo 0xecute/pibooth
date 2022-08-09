@@ -112,6 +112,7 @@ class PiApplication(object):
         self._machine.add_state('capture')
         self._machine.add_state('processing')
         self._machine.add_state('print')
+        self._machine.add_state('printing')
         self._machine.add_state('finish')
 
         # ---------------------------------------------------------------------
