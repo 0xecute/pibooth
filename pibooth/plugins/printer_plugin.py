@@ -11,14 +11,21 @@ class PrinterPlugin(object):
 
     def __init__(self, plugin_manager):
         self._pm = plugin_manager
+        self.printing_status = None
+
 
     def print_picture(self, cfg, app):
+        if self.printing_status != None:
+            return
+
+        self.printing_status = "Printing"
         LOGGER.info("Send final picture to printer")
         app.printer.print_file(app,
                                cfg.getint('PRINTER', 'pictures_per_page'))
         LOGGER.info("PRINTING SENT")
         app.count.printed += 1
         app.count.remaining_duplicates -= 1
+        self.printing_status = None
 
     @pibooth.hookimpl
     def pibooth_cleanup(self, app):
