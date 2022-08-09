@@ -79,8 +79,7 @@ class ViewPlugin(object):
             if cfg.getfloat('WINDOW', 'chosen_delay') > 0:
                 return 'chosen'
             return 'preview'
-        printed = app.find_print_event(events)
-        if printed:
+        if app.find_print_new_task_event(events):
             return 'printing'
 
     @pibooth.hookimpl
@@ -191,6 +190,6 @@ class ViewPlugin(object):
                 win.set_print_number(len(app.printer.get_all_tasks()), not app.printer.is_ready())
                 return 'printing'
             return 'wait'
-        if printed:
+        if app.find_print_new_task_event(events):
             return 'printing'
 

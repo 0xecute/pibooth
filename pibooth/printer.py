@@ -18,6 +18,8 @@ from PIL import Image
 from pibooth.utils import LOGGER
 from pibooth.pictures import get_picture_factory, LANDSCAPE
 
+PRINTER_NEW_TASK = pygame.USEREVENT + 5
+
 PRINTER_TASKS_UPDATED = pygame.USEREVENT + 2
 
 PRINTER_TASKS_COMPLETED = pygame.USEREVENT + 3
@@ -146,6 +148,7 @@ class Printer(object):
                 self.job_id = self._conn.printFile(self.name, fp.name, osp.basename(filename), options)
         else:
             self.job_id = self._conn.printFile(self.name, filename, osp.basename(filename), options)
+        pygame.event.post(pygame.event.Event(PRINTER_NEW_TASK))
         LOGGER.debug("File '%s' sent to the printer with options %s", filename, options)
 
     def cancel_all_tasks(self):
