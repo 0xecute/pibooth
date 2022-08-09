@@ -36,3 +36,4 @@ class PrintingPlugin(object):
 
         LOGGER.info("PRINTING DO")
         time.sleep(10)
+        app.printer.cancel_all_tasks()
