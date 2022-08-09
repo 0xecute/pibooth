@@ -186,10 +186,12 @@ class ViewPlugin(object):
     def state_print_validate(self, app, win, events):
         printed = app.find_print_event(events)
         self.forgotten = app.find_capture_event(events)
-        if printed:
-            return 'printing'
+
         if self.print_view_timer.is_timeout() or printed or self.forgotten:
             if printed:
                 win.set_print_number(len(app.printer.get_all_tasks()), not app.printer.is_ready())
+                return 'printing'
             return 'wait'
+        if printed:
+            return 'printing'
 

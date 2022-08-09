@@ -16,6 +16,7 @@ class PrinterPlugin(object):
         LOGGER.info("Send final picture to printer")
         app.printer.print_file(app,
                                cfg.getint('PRINTER', 'pictures_per_page'))
+        LOGGER.info("PRINTING SENT")
         app.count.printed += 1
         app.count.remaining_duplicates -= 1
 
@@ -44,6 +45,7 @@ class PrinterPlugin(object):
                 return
 
             self.print_picture(cfg, app)
+            return 'printing'
 
     @pibooth.hookimpl
     def state_processing_enter(self, cfg, app):
