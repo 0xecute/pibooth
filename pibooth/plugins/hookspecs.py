@@ -464,6 +464,55 @@ def state_print_exit(cfg, app, win):
     """
 
 
+
+
+# --- PrintingView State ----------------------------------------------------------
+
+
+@hookspec
+def state_printing_enter(cfg, app, win):
+    """Actions performed when application enter in Print state.
+
+    :param cfg: application configuration
+    :param app: application instance
+    :param win: graphical window instance
+    """
+
+
+@hookspec
+def state_printing_do(cfg, app, win, events):
+    """Actions performed when application is in Print state.
+    This hook is called in a loop until the application can switch
+    to the next state.
+
+    :param cfg: application configuration
+    :param app: application instance
+    :param win: graphical window instance
+    :param events: pygame events generated since last call
+    """
+
+
+@hookspec(firstresult=True)
+def state_printing_validate(cfg, app, win, events):
+    """Return the next state name if application can switch to it
+    else return None.
+
+    :param cfg: application configuration
+    :param app: application instance
+    :param win: graphical window instance
+    :param events: pygame events generated since last call
+    """
+
+
+@hookspec
+def state_printing_exit(cfg, app, win):
+    """Actions performed when application exit Print state.
+
+    :param cfg: application configuration
+    :param app: application instance
+    :param win: graphical window instance
+    """
+
 # --- Finish State -------------------------------------------------------------
 
 
