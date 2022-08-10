@@ -17,7 +17,7 @@ class PrintingPlugin(object):
     """
 
     def __init__(self, plugin_manager):
-        self.timer = PoolingTimer(30)
+        self.timer = PoolingTimer(10)
 
 
     @pibooth.hookimpl
