@@ -38,7 +38,7 @@ class Printer(object):
 
     def __init__(self, options, name='default', max_pages=-1,counters=None):
         self._conn = cups.Connection() if cups else None
-        self._notifier = Subscriber(self._conn) if cups else None
+        #self._notifier = Subscriber(self._conn) if cups else None
         self.name = None
         self.max_pages = max_pages
         self.options = options
@@ -172,5 +172,5 @@ class Printer(object):
     def quit(self):
         """Do cleanup actions.
         """
-        if self._notifier:
-            self._notifier.unsubscribe_all()
+        #if self._notifier:
+        #    self._notifier.unsubscribe_all()
