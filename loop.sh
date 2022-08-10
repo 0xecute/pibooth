@@ -68,9 +68,9 @@ with_printer() {
   while [ $x -le 300 ]
   do
     take_one
-    after_print  $x 6
+    after_print  12 6
     take_three
-    after_print  $x 6
+    after_print  12 6
     x=$(( $x + 1 ))
   done
 }
