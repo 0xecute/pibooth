@@ -127,17 +127,17 @@ class Printer(object):
             raise EnvironmentError("No printer found (check config file or CUPS config)")
         if not osp.isfile(filename):
             raise IOError("No such file or directory: {}".format(filename))
-        if self._notifier and not self._notifier.is_subscribed(self._on_event):
-            self._notifier.subscribe(self._on_event, [event.CUPS_EVT_JOB_COMPLETED,
-                                                      event.CUPS_EVT_JOB_CREATED,
-                                                      event.CUPS_EVT_JOB_STOPPED,
-                                                      event.CUPS_EVT_PRINTER_STATE_CHANGED,
-                                                      event.CUPS_EVT_PRINTER_STOPPED])
-        if self._notifier and not self._notifier.is_subscribed(self._on_event_end_printing):
-            self._notifier.subscribe(self._on_event_end_printing, [event.CUPS_EVT_JOB_COMPLETED,
-                                                      event.CUPS_EVT_JOB_STOPPED,
-                                                                   event.CUPS_EVT_PRINTER_STATE_CHANGED,
-                                                      event.CUPS_EVT_PRINTER_STOPPED])
+        #if self._notifier and not self._notifier.is_subscribed(self._on_event):
+            #self._notifier.subscribe(self._on_event, [event.CUPS_EVT_JOB_COMPLETED,
+            #                                         event.CUPS_EVT_JOB_CREATED,
+            #                                         event.CUPS_EVT_JOB_STOPPED,
+            #                                         event.CUPS_EVT_PRINTER_STATE_CHANGED,
+        #                                         event.CUPS_EVT_PRINTER_STOPPED])
+        #if self._notifier and not self._notifier.is_subscribed(self._on_event_end_printing):
+            #self._notifier.subscribe(self._on_event_end_printing, [event.CUPS_EVT_JOB_COMPLETED,
+            #                                         event.CUPS_EVT_JOB_STOPPED,
+            #                                                      event.CUPS_EVT_PRINTER_STATE_CHANGED,
+        #                                         event.CUPS_EVT_PRINTER_STOPPED])
 
         if copies > 1:
             with tempfile.NamedTemporaryFile(suffix=osp.basename(filename)) as fp:

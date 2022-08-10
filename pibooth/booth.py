@@ -34,7 +34,7 @@ try:
     filterwarnings("ignore", category=PinFactoryFallback)
     GPIO_INFO = "on Raspberry pi {0}".format(pi_info().model)
 except BadPinFactory:
-    from gpiozero.pins.mock import MockFactory
+    from  gpiozero.pins.mock import MockFactory
     Device.pin_factory = MockFactory()
     GPIO_INFO = "without physical GPIO, fallback to GPIO mock"
 
