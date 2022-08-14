@@ -158,7 +158,7 @@ class Background(object):
             overlay_name = "{}.png".format(self._name)
             if osp.isfile(pictures.get_filename(overlay_name)):
                 self._overlay = pictures.get_pygame_image(
-                    pictures.get_filename(overlay_name), (self._rect.width, self._rect.height), color=self._text_color)
+                    pictures.get_filename(overlay_name), (self._rect.width, self._rect.height), color=self._text_color, bg_color=self._background_color)
 
             self.resize_texts()
             self._need_update = True
@@ -468,7 +468,7 @@ class ProcessingBackground(Background):
         Background.__init__(self, "processing")
 
     def resize(self, screen):
-        #self._background_color = (255,255,255)
+        self._background_color = (255,255,255)
         self._background_image = None
         Background.resize(self, screen)
 
@@ -489,7 +489,8 @@ class PrintingBackground(Background):
         Background.__init__(self, "printing")
 
     def resize(self, screen):
-        self._background_color = (255,255,255)
+        self._background_color = True
+        self._text_color = None
         self._background_image = None
         Background.resize(self, screen)
 
