@@ -489,8 +489,7 @@ class PrintingBackground(Background):
         Background.__init__(self, "printing")
 
     def resize(self, screen):
-        self._background_color = True
-        self._text_color = None
+        self._background_color = (0,0,0)
         self._background_image = None
         Background.resize(self, screen)
 
