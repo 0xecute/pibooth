@@ -468,8 +468,8 @@ class ProcessingBackground(Background):
         Background.__init__(self, "processing")
 
     def resize(self, screen):
-        self._background_color = (255,255,255)
         self._background_image = None
+        self._background_color = None
         Background.resize(self, screen)
 
 
@@ -487,9 +487,7 @@ class PrintingBackground(Background):
 
     def __init__(self):
         Background.__init__(self, "printing")
-        self._background_color = None
-        self._background_image = None
-        self._text_color = (255, 255, 255)
+
 
     def resize(self, screen):
 
