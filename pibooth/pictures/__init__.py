@@ -89,8 +89,8 @@ def get_pygame_image(name, size=None, antialiasing=True, hflip=False, vflip=Fals
         else:
             pil_image = Image.new('RGBA', size, (0, 0, 0, 0))
 
-        #if color:
-        #    pil_image = colorize_pil_image(pil_image, color, bg_color)
+        if color:
+            pil_image = colorize_pil_image(pil_image, color, bg_color)
 
         if crop:
             pil_image = pil_image.crop(sizing.new_size_by_croping_ratio(pil_image.size, size))
