@@ -471,6 +471,7 @@ class ProcessingBackground(Background):
 
     def resize(self, screen):
         self._background_image = None
+        self._background_color = (255, 255, 255)
         Background.resize(self, screen)
 
 
