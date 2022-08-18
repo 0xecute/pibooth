@@ -271,6 +271,8 @@ class IntroWithPrintBackground(IntroBackground):
         return "{}({})".format(self.__class__.__name__, "intro_print")
 
     def resize(self, screen):
+        self._background_color = (255, 255, 255)
+        self._background_image = None
         IntroBackground.resize(self, screen)
         if self._need_update and self.arrow_location != ARROW_HIDDEN:
             size = (self._rect.width * 0.1, self._rect.height * 0.1)

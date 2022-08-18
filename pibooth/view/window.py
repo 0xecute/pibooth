@@ -341,6 +341,7 @@ class PiWindow(object):
     def set_print_number(self, current_nbr=None, failure=None):
         """Set the current number of tasks in the printer queue.
         """
+        return
         update = False
 
         if current_nbr is not None and self._print_number != current_nbr:
