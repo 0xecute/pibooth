@@ -64,7 +64,7 @@ class RpiCamera(BaseCamera):
             # Create an image padded to the required size (required by picamera)
             size = (((rect.width + 31) // 32) * 32, ((rect.height + 15) // 16) * 16)
 
-            image = self.build_overlay(size, str(text), alpha, color=(0, 0, 0))
+            image = self.build_overlay(size, str(text), alpha, color=(255,255,255))
             self._overlay = self._cam.add_overlay(image.tobytes(), image.size, layer=3,
                                                   window=tuple(rect), fullscreen=False)
 
