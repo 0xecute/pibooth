@@ -403,6 +403,8 @@ class ChosenBackground(Background):
         return "{}({}{})".format(self.__class__.__name__, self._name, self.selected)
 
     def resize(self, screen):
+        self._background_color = (255, 255, 255)
+        self._background_image = None
         Background.resize(self, screen)
         if self._need_update:
             size = (self._rect.width * 0.6, self._rect.height * 0.6)
