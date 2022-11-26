@@ -214,7 +214,7 @@ class PiApplication(object):
                     event = pygame.event.Event(BUTTONDOWN, capture=1, printer=1,
                                                button=self.buttons)
                     LOGGER.debug("BUTTONDOWN: generate DOUBLE buttons event")
-                self.capture.hold_repeat = False
+                self.buttons.hold_repeat = False
                 self._multipress_timer.reset()
                 pygame.event.post(event)
         else:
