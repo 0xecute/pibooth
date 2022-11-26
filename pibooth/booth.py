@@ -3,7 +3,7 @@
 
 """Pibooth main module.
 """
-
+import json
 import os
 import os.path as osp
 import tempfile
@@ -131,10 +131,10 @@ class PiApplication(object):
 
         self.camera = self._pm.hook.pibooth_setup_camera(cfg=self._config)
 
-        self.buttons_print = ButtonBoard(*config.get('CONTROLS', 'print_btn_pin'),
+        self.buttons_print = ButtonBoard(*json.loads(config.get('CONTROLS', 'print_btn_pin')),
                                          hold_time=config.getfloat('CONTROLS', 'debounce_delay'),
                                    pull_up=False)
-        self.buttons = ButtonBoard(*config.get('CONTROLS', 'picture_btn_pin'),
+        self.buttons = ButtonBoard(*json.loads(config.get('CONTROLS', 'picture_btn_pin')),
                                    hold_time=config.getfloat('CONTROLS', 'debounce_delay'),
                                    pull_up=False)
         self.buttons.when_held = self._on_button_capture_held
