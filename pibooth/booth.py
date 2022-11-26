@@ -132,11 +132,12 @@ class PiApplication(object):
         self.camera = self._pm.hook.pibooth_setup_camera(cfg=self._config)
 
         self.buttons_print = ButtonBoard(config.get('CONTROLS', 'print_btn_pin'),
+                                         hold_time=config.getfloat('CONTROLS', 'debounce_delay'),
                                    pull_up=False)
         self.buttons = ButtonBoard(*config.get('CONTROLS', 'picture_btn_pin'),
                                    hold_time=config.getfloat('CONTROLS', 'debounce_delay'),
                                    pull_up=False)
-        self.buttons.capture.when_held = self._on_button_capture_held
+        self.buttons.when_held = self._on_button_capture_held
         self.buttons_print.when_held = self._on_button_printer_held
 
         self.leds = LEDBoard(capture=config.get('CONTROLS', 'picture_led_pin'),
