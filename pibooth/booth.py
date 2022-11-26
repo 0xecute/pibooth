@@ -211,7 +211,7 @@ class PiApplication(object):
                     event = self._menu.create_back_event()
                     LOGGER.debug("BUTTONDOWN: generate MENU-ESC event")
                 else:
-                    event = pygame.event.Event(BUTTONDOWN, capture=1, printer=1,
+                    event = pygame.event.Event(BUTTONDOWN, capture=1, printer=0,
                                                button=self.buttons)
                     LOGGER.debug("BUTTONDOWN: generate DOUBLE buttons event")
                 self.buttons.hold_repeat = False
