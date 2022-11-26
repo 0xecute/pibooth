@@ -201,7 +201,7 @@ class PiApplication(object):
         """Called when the capture button is pressed.
         """
         if all(self.buttons.value):
-            self.buttons.capture.hold_repeat = True
+            self.buttons.hold_repeat = True
             if self._multipress_timer.elapsed() == 0:
                 self._multipress_timer.start()
             if self._multipress_timer.is_timeout():
@@ -214,7 +214,7 @@ class PiApplication(object):
                     event = pygame.event.Event(BUTTONDOWN, capture=1, printer=1,
                                                button=self.buttons)
                     LOGGER.debug("BUTTONDOWN: generate DOUBLE buttons event")
-                self.buttons.capture.hold_repeat = False
+                self.capture.hold_repeat = False
                 self._multipress_timer.reset()
                 pygame.event.post(event)
         else:
@@ -225,9 +225,9 @@ class PiApplication(object):
                 LOGGER.debug("BUTTONDOWN: generate MENU-NEXT event")
             else:
                 event = pygame.event.Event(BUTTONDOWN, capture=1, printer=0,
-                                           button=self.buttons.capture)
+                                           button=self.buttons)
                 LOGGER.debug("BUTTONDOWN: generate CAPTURE button event")
-            self.buttons.capture.hold_repeat = False
+            self.buttons.hold_repeat = False
             self._multipress_timer.reset()
             pygame.event.post(event)
 
@@ -246,7 +246,7 @@ class PiApplication(object):
                 LOGGER.debug("BUTTONDOWN: generate MENU-APPLY event")
             else:
                 event = pygame.event.Event(BUTTONDOWN, capture=0, printer=1,
-                                           button=self.buttons.printer)
+                                           button=self.buttons_print)
                 LOGGER.debug("BUTTONDOWN: generate PRINTER event")
             pygame.event.post(event)
 
