@@ -121,6 +121,8 @@ def get_pygame_layout_image(text_color, bg_color, layout_number, size):
     """
     layout_image = get_pygame_image("layout{0}.png".format(layout_number),
                                     size, color=text_color, bg_color=bg_color)
+    if layout_number == 3:
+        layout_image = get_pygame_image("layout{0}.png".format(layout_number),size)
     text = language.get_translated_text(str(layout_number))
     if text:
         rect = layout_image.get_rect()
