@@ -328,6 +328,8 @@ class ChooseBackground(Background):
         self.left_arrow_pos = None
         self.right_arrow = None
         self.right_arrow_pos = None
+        self._background_image = None
+
 
     def resize(self, screen):
         Background.resize(self, screen)
