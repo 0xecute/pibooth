@@ -332,6 +332,8 @@ class ChooseBackground(Background):
 
 
     def resize(self, screen):
+        self._background_color = (255, 255, 255)
+        self._background_image = None
         Background.resize(self, screen)
         if self._need_update:
             size = (self._rect.width * 0.45, self._rect.height * 0.6)
